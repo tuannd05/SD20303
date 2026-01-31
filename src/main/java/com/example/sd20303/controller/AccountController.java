@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("account")
 public class AccountController {
@@ -48,4 +51,16 @@ public class AccountController {
         params.addAttribute("message", "hello ban");
         return "redirect:/account/url1";
     }
+    @GetMapping("/hien-thi")
+    public String accountHienThi(Model model) {
+        List<Account> listAccount = new ArrayList<>();
+        listAccount.add(new Account("nguyenvv4", "123456"));
+        listAccount.add(new Account("nguyenvv5", "123456"));
+        listAccount.add(new Account("nguyenvv6", "123456"));
+        listAccount.add(new Account("nguyenvv7", "123456"));
+        model.addAttribute("listAccount", listAccount);
+        return "/account.html";
+
+    }
+
 }

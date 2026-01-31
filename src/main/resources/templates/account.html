@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <title>Title</title>
+</head>
+<body>
+
+<select name="" id="">
+    <th:block th:each="account,st : ${listAccount}">
+        <option th:text="${account.username}" th:value="${st.index}"></option>
+    </th:block>
+</select>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>username</td>
+        <td>password</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account: ${listAccount}">
+        <td th:text="${account.username}"></td>
+        <td th:text="${account.password}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
