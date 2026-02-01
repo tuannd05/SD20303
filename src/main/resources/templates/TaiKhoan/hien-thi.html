@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="" crossorigin="anonymous">
+</head>
+<body>
+
+<h3>Thêm đối tượng mới</h3>
+<form th:action="@{/tai-khoan/save}" method="post" th:object="${taiKhoan}">
+Ma TK: <input type="text" th:field="*{matk}"> <br>
+Ten TK: <input type="text" th:field="*{tentk}"> <br>
+   ChucVu: <select th:field="*{chucVu}">
+    <option value="">---Chon chuc vu---</option>
+    <option th:each="chucVu : ${listChucVu}" th:value="${chucVu.id}" th:text="${chucVu.ten}"></option>
+</select> <br>
+    Ho: <input type="text" th:field="*{ho}"> <br>
+    TenDem: <input type="text" th:field="*{tenDem}"> <br>
+    Ten: <input type="text" th:field="*{ten}"> <br>
+    NgaySinh: <input type="date" th:field="*{ngaySinh}"> <br>
+    TrangThai: <input type="radio" value="true" th:field="*{trangThai}">Đang hoạt động
+     <input type="radio" value="false" th:field="*{trangThai}"> Ngừng hoạt động<br>
+    <button class="btn btn-primary">Save</button>
+</form>
+Danh sách đối tượng
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>MaTK</th>
+        <th>TenTK</th>
+        <th>ChucVu</th>
+        <th>HoVaTen</th>
+        <th>NgaySinh</th>
+        <th>TrangThai</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item, stat : ${listTaiKhoan}">
+        <td th:text="${stat.index + 1}"></td>
+        <td th:text="${item.matk}"></td>
+        <td th:text="${item.tentk}"></td>
+        <td th:text="${item.chucVu.ten}"></td>
+        <td th:text="${item.ho + ' ' + item.tenDem + ' ' + item.ten}"></td>
+        <td th:text="${item.ngaySinh}"></td>
+        <td th:text="${item.trangThai? 'Đang hoạt động': 'Ngừng hoạt động'}"></td>
+        <td>
+            <a th:href="@{|/tai-khoan/edit/${item.matk}|}">
+                View-Update
+            </a>
+            |
+            <a th:href="@{|/tai-khoan/delete/${item.matk}|}"
+               onclick="return confirm('Bạn có muốn xóa không?')">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

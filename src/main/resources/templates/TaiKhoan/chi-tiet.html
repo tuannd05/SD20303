@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="" crossorigin="anonymous">
+</head>
+<body>
+<h3>Thêm đối tượng mới</h3>
+<form th:action="@{|/tai-khoan/update/${taiKhoan.matk}|}" method="post" th:object="${taiKhoan}">
+    Ma TK: <input type="text" th:field="*{matk}"> <br>
+    Ten TK: <input type="text" th:field="*{tentk}"> <br>
+    ChucVu: <select th:field="*{chucVu}">
+    <option value="">---Chon chuc vu---</option>
+    <option th:each="chucVu : ${listChucVu}" th:value="${chucVu.id}" th:text="${chucVu.ten}"></option>
+</select> <br>
+    Ho: <input type="text" th:field="*{ho}"> <br>
+    TenDem: <input type="text" th:field="*{tenDem}"> <br>
+    Ten: <input type="text" th:field="*{ten}"> <br>
+    NgaySinh: <input type="date" th:field="*{ngaySinh}"> <br>
+    TrangThai: <input type="radio" value="true" th:field="*{trangThai}">Đang hoạt động
+    <input type="radio" value="false" th:field="*{trangThai}"> Ngừng hoạt động<br>
+    <button class="btn btn-primary">Save</button>
+</form>
+</body>
+</html>
